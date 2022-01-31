@@ -20,7 +20,9 @@ public class CategoriaService {
 		Optional<Categoria> obj = catRepository.findById(id);
 		//return obj.orElse(null);
 		return obj.orElseThrow(() -> 
-		new ObjectNotFoundException(id, "Nao encontrado"));
+		new ObjectNotFoundException("Objeto não encontrado! Id: " 
+		+ id + ", Tipo: " + Categoria.class.getName(), null));
+		//(id, "ID Nao encontrado"));
 	}
 	 
 

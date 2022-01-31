@@ -22,8 +22,7 @@ public class CategoriaResource {
 		//ResponseEntity retorna codigo HTTP
 		//PathVariable usa o id da URL na funcao find
 		Categoria obj = catService.buscar(id);
-		return ResponseEntity.ok().body(obj);
-		
+		return ResponseEntity.ok().body(obj);		
 	}
 	
 
