@@ -1,5 +1,6 @@
 package com.projectW;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,20 @@ import com.projectW.domain.Cidade;
 import com.projectW.domain.Cliente;
 import com.projectW.domain.Endereco;
 import com.projectW.domain.Estado;
+import com.projectW.domain.Pagamento;
+import com.projectW.domain.PagamentoComBoleto;
+import com.projectW.domain.PagamentoComCartao;
+import com.projectW.domain.Pedido;
 import com.projectW.domain.Produto;
+import com.projectW.domain.enums.EstadoPagamento;
 import com.projectW.domain.enums.TipoCliente;
 import com.projectW.repositories.CategoriaRepository;
 import com.projectW.repositories.CidadeRepository;
 import com.projectW.repositories.ClienteRepository;
 import com.projectW.repositories.EnderecoRepository;
 import com.projectW.repositories.EstadoRepository;
+import com.projectW.repositories.PagamentoRepository;
+import com.projectW.repositories.PedidoRepository;
 import com.projectW.repositories.ProdutoRepository;
 
 
@@ -42,6 +50,13 @@ public class ProjectWApplication implements CommandLineRunner{
 	
 	@Autowired
 	private EnderecoRepository endRepository;
+	
+	@Autowired
+	private PedidoRepository pedRepository;
+	
+	@Autowired
+	private PagamentoRepository pagRepository;
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectWApplication.class, args);
@@ -91,6 +106,24 @@ public class ProjectWApplication implements CommandLineRunner{
 		
 		cliRepository.saveAll(Arrays.asList(cli1));
 		endRepository.saveAll(Arrays.asList(e1, e2));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		
+		Pedido ped1 = new Pedido(null, sdf.parse("30/01/2022 11:30"), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("30/01/2022 10:30"), cli1, e2);
+		
+		Pagamento pgto1 = new PagamentoComCartao(null, EstadoPagamento.FINALIZADO, ped1, 6); 
+		ped1.setPagamento(pgto1);
+		
+		Pagamento pgto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("01/02/2021 00:00"), null);
+		ped2.setPagamento(pgto2);
+		
+		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		
+		pedRepository.saveAll(Arrays.asList(ped1, ped2));
+		
+		pagRepository.saveAll(Arrays.asList(pgto1, pgto2));
+		
 		
 		
 	}
