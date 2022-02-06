@@ -31,10 +31,12 @@ public class Pedido implements Serializable {
 	private Date instante;
 	
 	@JsonManagedReference
+	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")//classe e filhas
 	private Pagamento pagamento;
 	
 	@JsonManagedReference
+	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;

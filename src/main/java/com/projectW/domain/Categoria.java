@@ -28,6 +28,7 @@ public class Categoria implements Serializable{
 	//referencia mapeamento relacional entre tabelas
 	//ja defino no classe Produto
 	@JsonManagedReference //ao buscar objeto categoria busca tbm seus relacionamentos
+	//analisar erro jsonManeged (erro dados json?). se sim apagar
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	

@@ -23,6 +23,7 @@ public class Estado implements Serializable {
 	private String nome;
 	
 	@JsonBackReference
+	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
 	@OneToMany(mappedBy = "estado")//objeto mapeado pelo atributo estado na Classe Cidade
 	private List<Cidade> cidades = new ArrayList<>();
 

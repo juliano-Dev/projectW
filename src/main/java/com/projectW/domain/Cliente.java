@@ -45,6 +45,7 @@ public class Cliente implements Serializable{
 	private Set<String> telefones = new HashSet<>();
 	
 	@JsonBackReference
+	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
 	@OneToMany(mappedBy="cliente" )
 	private List<Pedido> pedidos = new ArrayList<>();
 	

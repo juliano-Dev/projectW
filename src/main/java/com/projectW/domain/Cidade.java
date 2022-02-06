@@ -22,6 +22,7 @@ public class Cidade implements Serializable {
 	private String nome;
 	
 	@JsonManagedReference
+	//analisar erro jsonManeged (erro dados json?). se sim apagar
 	@ManyToOne
 	@JoinColumn(name="estado_id")
 	private Estado estado;

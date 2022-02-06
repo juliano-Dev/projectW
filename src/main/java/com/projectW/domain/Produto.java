@@ -30,6 +30,7 @@ public class Produto implements Serializable{
 	private double preco;
 	
 	@JsonBackReference //Omite lista de categorias, pois ja foi buscada em categoria
+	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
 	//muitos para muitos
 	@ManyToMany
 	//na tabela indicada e FK
