@@ -13,6 +13,7 @@ import com.projectW.domain.Cidade;
 import com.projectW.domain.Cliente;
 import com.projectW.domain.Endereco;
 import com.projectW.domain.Estado;
+import com.projectW.domain.ItemPedido;
 import com.projectW.domain.Pagamento;
 import com.projectW.domain.PagamentoComBoleto;
 import com.projectW.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.projectW.repositories.CidadeRepository;
 import com.projectW.repositories.ClienteRepository;
 import com.projectW.repositories.EnderecoRepository;
 import com.projectW.repositories.EstadoRepository;
+import com.projectW.repositories.ItemPedidoRepository;
 import com.projectW.repositories.PagamentoRepository;
 import com.projectW.repositories.PedidoRepository;
 import com.projectW.repositories.ProdutoRepository;
@@ -56,6 +58,9 @@ public class ProjectWApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedRepository;
 	
 	
 	public static void main(String[] args) {
@@ -123,6 +128,21 @@ public class ProjectWApplication implements CommandLineRunner{
 		pedRepository.saveAll(Arrays.asList(ped1, ped2));
 		
 		pagRepository.saveAll(Arrays.asList(pgto1, pgto2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2.000);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p3, 100.00, 2, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip1));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		itemPedRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
+		
 		
 		
 		
