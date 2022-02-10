@@ -18,10 +18,10 @@ public class ClienteResource {
 	private ClienteService cliService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id){
+	public ResponseEntity<Cliente> find(@PathVariable Integer id){
 		//ResponseEntity retorna codigo HTTP
 		//PathVariable usa o id da URL na funcao find
-		Cliente obj = cliService.buscar(id);
+		Cliente obj = cliService.find(id);
 		return ResponseEntity.ok().body(obj);		
 	}
 	

@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Pedido implements Serializable {
@@ -30,13 +29,13 @@ public class Pedido implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instante;
 	
-	@JsonManagedReference
-	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
+	//@JsonManagedReference
+	//analisar erro JsonManagedReference (erro dados json?). se sim apagar
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")//classe e filhas
 	private Pagamento pagamento;
 	
-	@JsonManagedReference
-	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
+	//@JsonManagedReference
+	//analisar erro JsonManagedReference (erro dados json?). se sim apagar
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;

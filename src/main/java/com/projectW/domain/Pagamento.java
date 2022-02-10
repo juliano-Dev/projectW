@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projectW.domain.enums.EstadoPagamento;
 
 @Entity
@@ -25,7 +25,7 @@ public abstract class Pagamento implements Serializable{
 	private Integer estado;
 	
 	//id = pedido.pagamentoId
-	@JsonBackReference
+	@JsonIgnore
 	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
 	@OneToOne
 	@JoinColumn(name="pedido_id")

@@ -72,6 +72,13 @@ public class ProjectWApplication implements CommandLineRunner{
 		// TODO Auto-generated method stub
 		Categoria cat1 = new Categoria(null, "TI");
 		Categoria cat2 = new Categoria(null, "Escritorio");
+		Categoria cat3 = new Categoria(null, "Ferramentas");
+		Categoria cat4 = new Categoria(null, "Eletronicos");
+		Categoria cat5 = new Categoria(null, "Livros");
+		Categoria cat6 = new Categoria(null, "Roupas");
+		Categoria cat7 = new Categoria(null, "Cama, mesa e banho");
+		Categoria cat8 = new Categoria(null, "Decoracao");
+		Categoria cat9 = new Categoria(null, "Outlet");
 		
 		Produto p1 = new Produto(null, "Monitor", 1000);
 		Produto p2 = new Produto(null, "Impressora", 900);
@@ -84,7 +91,8 @@ public class ProjectWApplication implements CommandLineRunner{
 		p1.getCategorias().addAll(Arrays.asList(cat1,cat2));
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		
-		catRepository.saveAll(Arrays.asList(cat1, cat2));
+		catRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5,
+				                            cat6, cat7, cat8, cat9));
 		prodRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		Estado est1 = new Estado(null, "Rio Grande do Sul");

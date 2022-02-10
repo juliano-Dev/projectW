@@ -14,7 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projectW.domain.enums.TipoCliente;
 
@@ -44,7 +44,7 @@ public class Cliente implements Serializable{
 	@CollectionTable(name="telefone")
 	private Set<String> telefones = new HashSet<>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	//analisar erro jsonBackReferece (erro dados json?). se sim alterar para jsonIgnore
 	@OneToMany(mappedBy="cliente" )
 	private List<Pedido> pedidos = new ArrayList<>();

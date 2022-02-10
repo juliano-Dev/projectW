@@ -16,7 +16,7 @@ public class ClienteService {
 	private ClienteRepository cliRepository;
 	
 	
-	 public Cliente buscar(Integer id) {
+	 public Cliente find(Integer id) {
 		Optional<Cliente> obj = cliRepository.findById(id);
 		//return obj.orElse(null);
 		return obj.orElseThrow(() -> 

@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Categoria implements Serializable{
 	
@@ -27,7 +25,7 @@ public class Categoria implements Serializable{
 	//inicia a colecao
 	//referencia mapeamento relacional entre tabelas
 	//ja defino no classe Produto
-	@JsonManagedReference //ao buscar objeto categoria busca tbm seus relacionamentos
+	//@JsonManagedReference //ao buscar objeto categoria busca tbm seus relacionamentos
 	//analisar erro jsonManeged (erro dados json?). se sim apagar
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();

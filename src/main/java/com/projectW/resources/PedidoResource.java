@@ -19,10 +19,10 @@ public class PedidoResource {
 	private PedidoService pedService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id){
+	public ResponseEntity<Pedido> find(@PathVariable Integer id){
 		//ResponseEntity retorna codigo HTTP
 		//PathVariable usa o id da URL na funcao find
-		Pedido obj = pedService.buscar(id);
+		Pedido obj = pedService.find(id);
 		return ResponseEntity.ok().body(obj);		
 	}
 	
