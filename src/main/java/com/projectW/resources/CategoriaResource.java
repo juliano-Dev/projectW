@@ -42,7 +42,7 @@ public class CategoriaResource {
 		obj = catService.insert(obj);
 		//informa url do item inserido
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(objDTO.getId()).toUri();
+				.buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	

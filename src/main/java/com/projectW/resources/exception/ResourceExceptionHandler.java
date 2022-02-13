@@ -40,7 +40,7 @@ public class ResourceExceptionHandler {
 			for(FieldError fe : e.getBindingResult().getFieldErrors()) {
 				err.addError(fe.getField(), fe.getDefaultMessage());
 			}
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);	 
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);	 	
 			
 	}
 }

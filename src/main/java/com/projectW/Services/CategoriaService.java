@@ -38,10 +38,16 @@ public class CategoriaService {
 	 }
 
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
-		return catRepository.save(obj);
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, obj);		
+		return catRepository.save(newObj);
 	}
 	 
+	//metodo auxiliar para atualizar apenas descricao
+		private void updateData(Categoria newObj, Categoria obj) {
+			newObj.setDescricao(obj.getDescricao());
+	}
+		
 	public void delete(Integer id) {
 		find(id);
 		try {
