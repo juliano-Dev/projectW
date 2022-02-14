@@ -39,7 +39,7 @@ public class ClienteService {
 		return obj.orElseThrow(() -> 
 		new ObjectNotFoundException("Objeto não encontrado! Id: " 
 		+ id + ", Tipo: " + Cliente.class.getName(), null));
-		//(id, "ID Nao encontrado"));
+		
 	}
 	 
 	 public Cliente insert(Cliente obj) {
