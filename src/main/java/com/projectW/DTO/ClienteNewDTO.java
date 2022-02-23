@@ -2,22 +2,42 @@ package com.projectW.DTO;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.projectW.Services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable{
 	
 	
 	private static final long serialVersionUID = 1L;
 	
+	@javax.validation.constraints.NotEmpty(message="Preenchimento obrigatório.")
+	@Length(min=5, max=80, message="Tamanho mínimo = 5 e máximo = 100 caracteres")
 	private String nome;
+	
+	@javax.validation.constraints.NotEmpty(message="Preenchimento obrigatório.")
+	@Email(message="Email inválido.")
 	private String email;
+	
+	@javax.validation.constraints.NotEmpty(message="Preenchimento obrigatório.")
 	private String cpfOuCnpj;
 	private Integer tipo;//tipo cliente
 	
+	@javax.validation.constraints.NotEmpty(message="Preenchimento obrigatório.")
 	private String logradouro;
+	
+	@javax.validation.constraints.NotEmpty(message="Preenchimento obrigatório.")
 	private String numero;
 	private String complemento;
 	private String bairro;
+	
+	@javax.validation.constraints.NotEmpty(message="Preenchimento obrigatório.")
 	private String cep;
 	
+	@javax.validation.constraints.NotEmpty(message="Preenchimento obrigatório.")
 	private String telefone;
 	private String telefone2;
 	private String telefone3;
