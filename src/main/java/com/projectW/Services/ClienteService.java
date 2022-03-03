@@ -91,11 +91,13 @@ public class ClienteService {
 		public Cliente fromDTO(ClienteNewDTO objDTO) {
 			Cliente cli = new Cliente(null, objDTO.getNome(), objDTO.getEmail(),
 					                  objDTO.getCpfOuCnpj(), TipoCliente.toEnum(objDTO.getTipo()));
+			
 			Optional<Cidade> cid = cidRepository.findById(objDTO.getCidadeId());
 			Endereco end = new Endereco(null, objDTO.getLogradouro(), objDTO.getNumero(), objDTO.getComplemento(),
 					                    objDTO.getBairro(), objDTO.getCep(), cli, cid.get());
 			cli.getEnderecos().add(end);
 			cli.getTelefones().add(objDTO.getTelefone());
+			
 			if(objDTO.getTelefone2() != null) cli.getTelefones().add(objDTO.getTelefone2());
 			if(objDTO.getTelefone3() != null) cli.getTelefones().add(objDTO.getTelefone3());
 			
