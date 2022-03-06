@@ -6,8 +6,10 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.projectW.Services.validation.ClienteUpdate;
 import com.projectW.domain.Cliente;
 
+@ClienteUpdate
 public class ClienteDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,7 @@ public class ClienteDTO implements Serializable{
 	@Email(message="Email inválido.")
 	private String email;
 	
+
 	public ClienteDTO() {}
 	
 	public ClienteDTO(Cliente obj) {
