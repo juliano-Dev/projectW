@@ -13,7 +13,7 @@ import com.projectW.domain.Produto;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 
-	//@Transactional(readOnly=true)
+	// @Transactional(readOnly=true)
 	//@Query("SELECT DISTINCT obj FROM Produto obj INNER JOIN obj.categorias cat WHERE obj.descricao LIKE %:descricao% AND cat IN :categorias")
 	//Page<Produto> search(@Param("descricao") String descricao, @Param("categorias") List<Categoria> categorias, Pageable pageRequest);
 	Page<Produto> findDistinctByDescricaoContainingAndCategoriasIn(String descricao, List<Categoria> categorias, Pageable pageRequest);

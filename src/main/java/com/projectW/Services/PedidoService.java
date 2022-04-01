@@ -1,5 +1,6 @@
 package com.projectW.Services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -25,6 +26,9 @@ public class PedidoService {
 		//(id, "ID Nao encontrado"));
 	}
 	
+	 public List<Pedido> findAll() {
+			return pedRepository.findAll();
+		}
 	 
 
 	

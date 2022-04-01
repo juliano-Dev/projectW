@@ -80,9 +80,9 @@ public class ProjectWApplication implements CommandLineRunner{
 		Categoria cat8 = new Categoria(null, "Decoracao");
 		Categoria cat9 = new Categoria(null, "Outlet");
 		
-		Produto p1 = new Produto(null, "Monitor", 1000);
+		Produto p1 = new Produto(null, "Monitor", 1.000);
 		Produto p2 = new Produto(null, "Impressora", 900);
-		Produto p3 = new Produto(null, "Mouse", 80);
+		Produto p3 = new Produto(null, "Mouse", 80.00);
 		Produto p4 = new Produto(null, "Mesa", 1180);
 		Produto p5 = new Produto(null, "Colchao", 2000);
 		Produto p6 = new Produto(null, "TV Led LG", 3500);
@@ -146,6 +146,7 @@ public class ProjectWApplication implements CommandLineRunner{
 		
 		Pedido ped1 = new Pedido(null, sdf.parse("30/01/2022 11:30"), cli1, e1);
 		Pedido ped2 = new Pedido(null, sdf.parse("30/01/2022 10:30"), cli1, e2);
+		Pedido ped3 = new Pedido(null, sdf.parse("30/01/2022 10:30"), cli1, e2);
 		
 		Pagamento pgto1 = new PagamentoComCartao(null, EstadoPagamento.FINALIZADO, ped1, 6); 
 		ped1.setPagamento(pgto1);
@@ -153,24 +154,34 @@ public class ProjectWApplication implements CommandLineRunner{
 		Pagamento pgto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("01/02/2021 00:00"), null);
 		ped2.setPagamento(pgto2);
 		
+		Pagamento pgto3 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped3, sdf.parse("01/02/2021 00:00"), null);
+		ped3.setPagamento(pgto3);
+		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		
-		pedRepository.saveAll(Arrays.asList(ped1, ped2));
+		pedRepository.saveAll(Arrays.asList(ped1, ped2, ped3));
 		
-		pagRepository.saveAll(Arrays.asList(pgto1, pgto2));
+		pagRepository.saveAll(Arrays.asList(pgto1, pgto2, pgto3));
 		
-		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2.000);
-		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
-		ItemPedido ip3 = new ItemPedido(ped2, p3, 100.00, 2, 800.00);
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 1.000);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.0);
+		ItemPedido ip3 = new ItemPedido(ped2, p3, 5.00, 2, 80.0);
+		
+		ItemPedido ip4 = new ItemPedido(ped3, p1, 100.00, 2, 1.000);
+		ItemPedido ip5 = new ItemPedido(ped3, p3, 100.00, 2, 80.0);
+		
+		//ItemPedido ip6 = new ItemPedido(ped3, p3, 2.00, 3, 80.0);
 		
 		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
 		ped2.getItens().addAll(Arrays.asList(ip1));
 		
-		p1.getItens().addAll(Arrays.asList(ip1));
-		p2.getItens().addAll(Arrays.asList(ip3));
-		p3.getItens().addAll(Arrays.asList(ip2));
+		ped3.getItens().addAll(Arrays.asList(ip4, ip5));
 		
-		itemPedRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		p1.getItens().addAll(Arrays.asList(ip1, ip2));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip4, ip5));
+		
+		itemPedRepository.saveAll(Arrays.asList(ip1, ip2, ip3, ip4, ip5));
 		
 		
 		
